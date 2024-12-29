@@ -16,6 +16,7 @@ import static com.badlogic.gdx.box2d.Box2d.*;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Box2cDemo extends ApplicationAdapter {
+    private static b2WorldId worldId;
     private SpriteBatch batch;
     private Texture image;
 
@@ -23,6 +24,7 @@ public class Box2cDemo extends ApplicationAdapter {
 
     @Override
     public void create() {
+
         setupWorld();
         batch = new SpriteBatch();
         image = new Texture("libgdx.png");
@@ -39,7 +41,7 @@ public class Box2cDemo extends ApplicationAdapter {
         worldDef.gravity().x(0.0f);
         worldDef.gravity().y(-10.0f);
 
-        b2WorldId worldId = b2CreateWorld(worldDef.asPointer());
+        worldId = b2CreateWorld(worldDef.asPointer());
 
         // Define the ground body.
         b2BodyDef groundBodyDef = b2DefaultBodyDef();
@@ -80,13 +82,17 @@ public class Box2cDemo extends ApplicationAdapter {
 
         // Add the shape to the body.
         b2CreatePolygonShape(bodyId, shapeDef.asPointer(), dynamicBox.asPointer());
+        final boolean isValid = b2World_IsValid(worldId);
+        System.out.println("World isValid "+isValid);
+
     }
 
     int renderCount =0;
 
     @Override
     public void render() {
-
+        float timeStep = 1.0f / 60.0f;
+        int subStepCount = 4;
 
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
 

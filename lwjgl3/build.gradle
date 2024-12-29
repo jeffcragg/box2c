@@ -34,7 +34,7 @@ dependencies {
 
   //api "com.badlogicgames.gdx:gdx-box2d:0.1-SNAPSHOT"
   implementation "com.badlogicgames.gdx:gdx-box2d-platform:0.1-SNAPSHOT:natives-desktop"
-  implementation "com.badlogicgames.gdx:gdx-box2d-platform:0.1-SNAPSHOT:natives-x86"
+  //implementation "com.badlogicgames.gdx:gdx-box2d-platform:0.1-SNAPSHOT:natives-x86"
   implementation "com.badlogicgames.gdx:gdx-box2d-platform:0.1-SNAPSHOT:natives-x86_64"
   //implementation "com.badlogicgames.jnigen:jnigen-runtime:3.0.0-SNAPSHOT"
 
@@ -51,6 +51,7 @@ def os = System.properties['os.name'].toLowerCase()
 run {
   workingDir = rootProject.file('assets').path
   setIgnoreExitValue(false)
+  systemProperty("com.badlogic.jnigen.gc_disabled",true)
 
   if (os.contains('mac')) jvmArgs += "-XstartOnFirstThread"
 }
