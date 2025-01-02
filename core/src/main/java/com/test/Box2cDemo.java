@@ -96,7 +96,6 @@ public class Box2cDemo extends ApplicationAdapter {
 
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
 
-        System.out.println("renderCount :"+renderCount++);
         batch.begin();
         batch.draw(image, 140, 210);
         batch.end();
