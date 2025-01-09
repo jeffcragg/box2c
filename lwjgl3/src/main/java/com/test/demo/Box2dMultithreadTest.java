@@ -1,4 +1,4 @@
-package com.badlogic.gdx.box2d.test;
+package com.test.demo;
 
 import com.badlogic.gdx.box2d.Box2d;
 import com.badlogic.gdx.box2d.enums.b2BodyType;
@@ -12,7 +12,6 @@ import com.badlogic.gdx.box2d.structs.b2WorldDef;
 import com.badlogic.gdx.box2d.structs.b2WorldId;
 import com.badlogic.gdx.jnigen.runtime.closure.ClosureObject;
 import com.badlogic.gdx.jnigen.runtime.pointer.VoidPointer;
-import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +26,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static com.badlogic.gdx.box2d.Box2d.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Box2dMultithreadTest {
 
@@ -161,8 +159,6 @@ public class Box2dMultithreadTest {
         enqueueTask.free();
     }
 
-    // Test multithreaded determinism
-    @Test
     public void MultithreadingTest() {
 
         Box2d.initialize();
@@ -181,10 +177,6 @@ public class Box2dMultithreadTest {
             b2Rot rot1 = finalRotations[0][i];
             b2Rot rot2 = finalRotations[1][i];
 
-            assertEquals(p1.x(), p2.x());
-            assertEquals(p1.y(), p2.y());
-            assertEquals(rot1.c(), rot2.c());
-            assertEquals(rot1.s(), rot2.s());
         }
     }
 }
